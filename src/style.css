@@ -1,0 +1,53 @@
+/*
+ * Override any of these on :root or on an ancestor of the field: :where() gives the defaults no specificity. The
+ * border, radius, focus colour and disabled opacity are shared with @ismailnakkar/rich-text-editor under the same
+ * names and defaults, so a page that loads both gets the same values whichever stylesheet comes last.
+ */
+:where(:root) {
+    --editors-border: 1px solid #ced4da;
+    --editors-radius: .375rem;
+    --editors-focus-color: #2563eb;
+    --editors-disabled-opacity: .6;
+    --editors-mono-font: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    --editors-code-min-height: 16em;
+    --editors-code-max-height: 600px;
+}
+
+/* .cm-editor is repeated to outrank CodeMirror's theme by specificity, whatever order the stylesheets load in. */
+.cm-editor.editors-code {
+    border: var(--editors-border);
+    border-radius: var(--editors-radius);
+}
+
+/* An editable element is :focus-visible whenever it has focus, which is what .cm-focused marks. */
+.cm-editor.editors-code.cm-focused {
+    outline: 2px solid var(--editors-focus-color);
+    outline-offset: 2px;
+}
+
+.cm-editor.editors-code:has(.cm-content[aria-disabled="true"]) {
+    opacity: var(--editors-disabled-opacity);
+}
+
+/* On the text and gutter, not the frame: they don't stretch to it, and a click below them would do nothing. */
+.cm-editor.editors-code :is(.cm-content, .cm-gutter) {
+    min-block-size: var(--editors-code-min-height);
+}
+
+/* The frame doesn't clip, or it would clip the completion list too: these round its corners instead. */
+.cm-editor.editors-code .cm-scroller {
+    max-block-size: var(--editors-code-max-height);
+    overflow: auto;
+    border-radius: inherit;
+    font-family: var(--editors-mono-font);
+}
+
+.cm-editor.editors-code .cm-panels-top {
+    border-start-start-radius: inherit;
+    border-start-end-radius: inherit;
+}
+
+.cm-editor.editors-code .cm-panels-bottom {
+    border-end-start-radius: inherit;
+    border-end-end-radius: inherit;
+}

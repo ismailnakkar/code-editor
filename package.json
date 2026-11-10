@@ -1,0 +1,62 @@
+{
+    "name": "@ismailnakkar/code-editor",
+    "version": "1.0.0",
+    "description": "A CodeMirror HTML editor that takes a textarea's place, while the textarea stays the posted field.",
+    "keywords": [
+        "editor",
+        "textarea",
+        "codemirror",
+        "html",
+        "code-editor"
+    ],
+    "homepage": "https://github.com/ismailnakkar/code-editor",
+    "bugs": {
+        "url": "https://github.com/ismailnakkar/code-editor/issues"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/ismailnakkar/code-editor.git"
+    },
+    "license": "MIT",
+    "author": {
+        "name": "Ismail Nakkar",
+        "email": "juge.steam@gmail.com"
+    },
+    "type": "module",
+    "main": "src/index.js",
+    "types": "src/index.d.ts",
+    "exports": {
+        ".": {
+            "types": "./src/index.d.ts",
+            "default": "./src/index.js"
+        },
+        "./style.css": {
+            "types": "./src/style.d.css.ts",
+            "default": "./src/style.css"
+        }
+    },
+    "files": [
+        "src"
+    ],
+    "publishConfig": {
+        "access": "public"
+    },
+    "scripts": {
+        "test": "vitest run",
+        "prepublishOnly": "npm test"
+    },
+    "peerDependencies": {
+        "@codemirror/lang-html": "^6.4.12",
+        "@codemirror/state": "^6.0.0",
+        "@codemirror/theme-one-dark": "^6.1.3",
+        "codemirror": "^6.0.2"
+    },
+    "devDependencies": {
+        "@codemirror/lang-html": "^6.4.12",
+        "@codemirror/state": "^6.0.0",
+        "@codemirror/theme-one-dark": "^6.1.3",
+        "codemirror": "^6.0.2",
+        "happy-dom": "^21.0.4",
+        "vitest": "^5.1.0"
+    }
+}
